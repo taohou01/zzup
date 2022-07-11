@@ -57,7 +57,7 @@ A sample input file specifying a dynamic point cloud (DPC) is provided as `sampl
 The following options control the behavior of the program: 
 - `-d` specifies the maximum dimension for the Rips simplices considered (default to 2); 
 - `-s` specifies the starting time considered for the input DPC (default to 0); 
-- `-e` specifies the end time considered for the input DPC (default to maximum time in input file);
+- `-e` specifies the ending time considered for the input DPC (default to maximum time in input file);
 - `--fzz` makes the software also invoke [`FastZigzag`](https://github.com/taohou01/fzz) for computing barcodes from scratch for the purpose of timing comparison;
 - `-E` prints some status messages concerning the edge operations performed during the run;
 - `--sop` prints some status messages concerning the simplex-wise operations performed during the run (automatically turns on `-E`).
@@ -67,13 +67,15 @@ The name of the output file encoding the vineyard produces is of the following f
 ```
 [INPUT_FILENAME]_d_[X]_t_[Y]_[Z]_vines.txt
 ```
-where `[X]` is maximum dimension and `[Y]`/`[Z]` are the starting/ending time. For example, the following command
+where `[X]` is the maximum dimension and `[Y]`/`[Z]` are the starting/ending time. For example, the following command
 
 ```
 ./dpc_vine -d 3 -s 1 -e 5 ../sample_in.txt 
 ```
 
-generate a output file `sample_in_d_3_t_1_5_vines`.
+generates an output file `sample_in_d_3_t_1_5_vines.txt`.
+
+As in `[1]`, the vineyard specified in output file consists of 2D points (birth-death time for the persistence bars) sweeping through a third dimension (distance threshold for Rips) forming vines (lines). The first line of the output file specifies the maximum distance of points in the DPC. The reason for specifying such max distance is to provide a finite capping value for the third dimension for those vines starting from infinite distance.
 
 ## Implementation Details
 
