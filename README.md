@@ -52,7 +52,7 @@ The software runs with following command:
 ./dpc_vine [OPTIONS] input_dpc_file
 ```
 
-A sample input file specifying a dynamic point cloud (DPC) is provided as `sample_in.txt` with the source codes. A `input_dpc_file` starts with a line specifying the number (`N`) of points and each `N+1` lines that follow specify the positions of the points at a time `i`, with `i` always starting from `0`.
+A sample input file specifying a dynamic point cloud (DPC) is provided as `sample_in.txt` with the source codes. A `input_dpc_file` starts with a line specifying the number (`N`) of points and each `N+1` lines that follow specify the positions of the points at a time `i`, with `i` always starting from `0`. The first of the `N+1` lines is `# t i` and each remaining line starts with an id for the point followed by its position (currently only in *2D*).
 
 ## Implementation Details
 
