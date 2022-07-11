@@ -23,11 +23,11 @@ bool parseOptions(int argc, char** argv, std::string& posfname,
         po::options_description shown_desc("Options"); 
         shown_desc.add_options() 
             (",d", po::value<Integer>(&max_dim), 
-            "Maximum dimension for Rips simplices\n")
+            "Maximum dimension for Rips simplices (default to 2)\n")
             (",s", po::value<Integer>(&min_time), 
-            "Starting time considered for the DPC\n")
+            "Starting time considered for the DPC (default to 0)\n")
             (",e", po::value<Integer>(&max_time), 
-            "Ending time considered for the DPC\n")
+            "Ending time considered for the DPC (default to maximum time of input file)\n")
             ("fzz", "Compute barcodes using FastZigzag for timing comparison\n")
             ("eop,E", "Print edge operations\n")
             ("sop", "Print simplex operations (automatically turns on '-E')\n")
