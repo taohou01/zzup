@@ -52,7 +52,13 @@ The software runs with following command:
 ./dpc_vine [OPTIONS] input_dpc_file
 ```
 
-A sample input file specifying a dynamic point cloud (DPC) is provided as `sample_in.txt` with the source codes. A `input_dpc_file` starts with a line specifying the number (`N`) of points and each `N+1` lines that follow specify the positions of the points at a time `i`, with `i` always starting from `0`. The first of the `N+1` lines is `# t i` and each remaining line starts with an id for the point followed by its position (currently only in *2D*).
+A sample input file specifying a dynamic point cloud (DPC) is provided as `sample_in.txt` with the source codes. An `input_dpc_file` starts with a line specifying the number (`N`) of points and each `N+1` lines that follow specify the positions of the points at a time `i`, with `i` always starting from `0`. The first of the `N+1` lines is `# t i` and each remaining line starts with an id for the point followed by its position (currently only in *2D*).
+
+There are options for the program which controls the behavior: 
+- `-d` specifies the maximum dimension for the Rips simplices considered (default to 2); 
+- `-s` specifies the starting time considered for the input DPC (default to 0); 
+- `-e` specifies the end time considered for the input DPC (default to maximum time in input file);
+- `--fzz` makes the software also invoke [`FastZigzag`](https://github.com/taohou01/fzz) for computing barcodes from scratch for the purpose of timing comparison;
 
 ## Implementation Details
 
