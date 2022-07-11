@@ -1,6 +1,6 @@
 # Updating zigzag barcodes and representatives for computing vineyards for dynamic point clouds
 
-This project implements the algorithms for computing vines and vineyards for dynamic point clouds using representative-based zigzag update algorihtms. The approaches are described in the following paper `[1]`:
+This project implements the algorithms for computing vines and vineyards for dynamic point clouds using the representative-based zigzag update algorihtms. The approaches are described in the following paper `[1]`:
 
 [Updating Barcodes and Representatives for Zigzag Persistence](https://arxiv.org/pdf/2112.02352.pdf)
 
@@ -62,7 +62,7 @@ The following options control the behavior of the program:
 - `-E` prints some status messages concerning the edge operations performed during the run;
 - `--sop` prints some status messages concerning the simplex-wise operations performed during the run (automatically turns on `-E`).
 
-The name of the output file encoding the vineyard produces is of the following form
+The name of the output file encoding the vineyard produced is of the following form
 
 ```
 [INPUT_FILENAME]_d_[X]_t_[Y]_[Z]_vines.txt
