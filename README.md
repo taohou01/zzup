@@ -91,7 +91,7 @@ A python script `disp_vines.py` is provided for displaying the vines for an outp
 
 The implementation can be roughly broken into two parts:
 
-- The *front end* (`dpc.h/cpp`) generates the *distance-time curves* (see `[1]`) from the DPC and detects all the *critical events* (local min/max and intersections) of the curves. It then generates *edge-level* operations from the critical events (inserting/removing consecutive addition/deletion of an edge in the middle or switching two deletion/addition of edges). From the edge-level operations, it generates the *simplex-wise* opeartions on the zigzag filration (aka. the switches, expansions, and contractions) and performs the barcode updates using the back end. During the barcode updating, points for vines are being output.
+- The *front end* (`dpc.h/cpp`) generates the *distance-time curves* (see `[1]`) from the DPC and detects all the *critical events* (local min/max and intersections) of the curves. It then generates *edge-level* operations from the critical events (inserting/removing consecutive addition/deletion of an edge in the middle or switching two addition/deletion of edges). From the edge-level operations, it generates the *simplex-wise* opeartions on the zigzag filration (aka. the switches, expansions, and contractions) and performs the barcode updates using the back end. During the barcode updating, points for vines are being output.
 
 - The *back end* (`dynamic_zigzag.h/cpp`) implements the representative-based update algorithms described in `[1]` for the five operations which are used by the front end.
 
@@ -100,6 +100,9 @@ We also notice the following:
 - Since we sweep the distance threhold in decreasing order, the starting filtration is an *up-down* zigzag filtration which corresponds to the infinite distance. The representatives for the up-down filtration are computed from an algorithm similar to the one described in Appendix A of `[3]` ([link](https://arxiv.org/pdf/2105.00518.pdf)).
 
 - For efficient implementation, when manipulating chains during the update of representatives, contents of a chain (which is an increasing array of simplex id's) never change once the chain is initially set. Hence, with [`std::share_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr), copying a chain is nothing but copying the chain's smart pointer (which is constant time). Whenever summing two chains, the resulting chain always points to a newly allocated memory location. Doing this can avoid a lot of unnecessary chain copies.
+
+- [`FastZigzag`](https://github.com/taohou01/fzz) is used for computing zigzag barcodes from scratch (for the purpose of timing comparison). Codes of [`FastZigzag`](https://github.com/taohou01/fzz) are wrapped into a class (`fzz.h/cpp`). [phat](https://github.com/blazs/phat) is used for computing the standard (non-zigzag) persistence in [`FastZigzag`](https://github.com/taohou01/fzz).
+
 
 ## References
 
