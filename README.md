@@ -91,9 +91,13 @@ A python script `disp_vines.py` is provided for displaying the vines for an outp
 
 The implementation can be roughly broken into two parts:
 
-- The *front end* (`dpc.h/cpp`) generates the *distance-time curves* (see `[1]`) from the DPC and detects all the *critical events* (local min/max and intersections) of the curves. It then generates *edge-level* operations from the critical events (inserting/removing consecutive addition/deletion of an edge in the middle or swithing two deletion/addition of edges in the filtration). From the edge-level operations, it generates the *simplex-wise* opeartions on the zigzag filration (aka. the switches, expansions, and contractions) and performs the barcode updates using the back end. During the barcode updating, points for vines are being output.
+- The *front end* (`dpc.h/cpp`) generates the *distance-time curves* (see `[1]`) from the DPC and detects all the *critical events* (local min/max and intersections) of the curves. It then generates *edge-level* operations from the critical events (inserting/removing consecutive addition/deletion of an edge in the middle or switching two deletion/addition of edges). From the edge-level operations, it generates the *simplex-wise* opeartions on the zigzag filration (aka. the switches, expansions, and contractions) and performs the barcode updates using the back end. During the barcode updating, points for vines are being output.
 
 - The *back end* (`dynamic_zigzag.h/cpp`) implements the representative-based update algorithms described in `[1]` for the five operations which are used by the front end.
+
+We also notice the following:
+
+- Since we sweep the distance threhold in decreasing order, the starting filtration is an *up-down* zigzag filtration which corresponds to the infinite distance. The representatives for the updown filtration are computed from an algorithm similar to the one described in Appendix A of `[3]` ([`link`](https://arxiv.org/pdf/2105.00518.pdf))
 
 ## References
 
@@ -101,3 +105,4 @@ The implementation can be roughly broken into two parts:
 2. David Cohen-Steiner, Herbert Edelsbrunner, and Dmitriy Morozov. Vines and vineyards by
 updating persistence in linear time. *The Twenty-Second Annual Symposium
 on Computational Geometry*.
+3. Tamal K. Dey and Tao Hou. Computing Optimal Persistent Cycles for Levelset Zigzag on Manifold-like Complexes.
