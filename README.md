@@ -12,15 +12,37 @@ This project is developed by [Tao Hou](https://taohou01.github.io) under the [CG
 
 ## About the Implementation
 
-Given a dynamic point cloud as input, the software first builds a sequence of simplex-wise operations on the zigzag filtration, which consist of the following as in `[1]`:
+Given a dynamic point cloud as input, the software first builds a sequence of simplex-wise operations on the zigzag filtration, which consists of the following as in `[1]`:
 
-- backward switches
 - forward switches
+- backward switches
 - outward switches
 - outward expansions
 - inward contractions
 
-It then perform updates on the zigzag barcodes for the operations and builds *vines and vineyards* `[2]` for the input data. More explanations on the implementation are provided in Section [Implementation Details](https://github.com/taohou01/zzup/edit/main/README.md#implementation-details)
+It then performs updates on the zigzag barcodes for the operations and builds *vines and vineyards* `[2]` for the input data. More explanations on the implementation are provided in the Section [Implementation Details](https://github.com/taohou01/zzup/edit/main/README.md#implementation-details)
+
+## Building
+
+The building utilized [cmake](https://cmake.org/) software, and all building problems should be solvable by inspecting and changing the CMakeLists.txt file. The building has two dependencies: one is boost, which is quite standard (see CMakeLists.txt); the other is [phat](https://github.com/blazs/phat) used in the [FastZigzag]() implementation for computing zigzag barcodes from scratch for timing comparisons (see [Implementation Details](https://github.com/taohou01/zzup/edit/main/README.md#implementation-details)). For [phat](https://github.com/blazs/phat), users should first download the codes themselves and then include the header files of phat into the project by adding
+
+```
+include_directories( "path/to/phat/include" ) 
+```
+
+into CMakeLists.txt.
+
+Commands for building are quite standard:
+
+```
+cd [dir-to-fzz]
+mkdir build
+cd build
+cmake ..
+make
+```
+
+The software is developed and tested under MacOS and Linux. 
 
 ## Implementation Details
 
