@@ -97,7 +97,9 @@ The implementation can be roughly broken into two parts:
 
 We also notice the following:
 
-- Since we sweep the distance threhold in decreasing order, the starting filtration is an *up-down* zigzag filtration which corresponds to the infinite distance. The representatives for the updown filtration are computed from an algorithm similar to the one described in Appendix A of `[3]` ([`link`](https://arxiv.org/pdf/2105.00518.pdf))
+- Since we sweep the distance threhold in decreasing order, the starting filtration is an *up-down* zigzag filtration which corresponds to the infinite distance. The representatives for the up-down filtration are computed from an algorithm similar to the one described in Appendix A of `[3]` ([link](https://arxiv.org/pdf/2105.00518.pdf)).
+
+- For efficient implementation, when manipulating chains during the update of representatives, contents of a chain (which is an increasing array of simplex id's) never change once the chain is initially set. Hence, with [`std::share_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr), copying a chain is nothing but copying the chain's smart pointer (which is constant time). Whenever summing two chains, the resulting chain always points to a newly allocated memory location. Doing this can avoid a lot of unnecessary chain copies.
 
 ## References
 
