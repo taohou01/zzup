@@ -24,7 +24,7 @@ It then performs updates on the zigzag barcodes for the operations and builds *v
 
 ## Building
 
-The building utilized [cmake](https://cmake.org/) software, and all building problems should be solvable by inspecting and changing the CMakeLists.txt file. The building has two dependencies: one is boost, which is quite standard (see CMakeLists.txt); the other is [phat](https://github.com/blazs/phat) used in the [FastZigzag]() implementation for computing zigzag barcodes from scratch for timing comparisons (see [Implementation Details](https://github.com/taohou01/zzup/edit/main/README.md#implementation-details)). For [phat](https://github.com/blazs/phat), users should first download the codes themselves and then include the header files of phat into the project by adding
+The building utilized [`cmake`](https://cmake.org/) software, and all building problems should be solvable by inspecting and changing the `CMakeLists.txt` file. The building has two dependencies: one is `boost`, which is quite standard (see `CMakeLists.txt`); the other is [`phat`](https://github.com/blazs/phat) used in the [`FastZigzag`](https://github.com/taohou01/fzz) implementation for computing zigzag barcodes from scratch for timing comparisons (see [Implementation Details](https://github.com/taohou01/zzup/edit/main/README.md#implementation-details)). For [`phat`](https://github.com/blazs/phat), users should first download the codes themselves and then include the header files of phat into the project by adding
 
 ```
 include_directories( "path/to/phat/include" ) 
