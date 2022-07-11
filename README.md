@@ -4,7 +4,7 @@ This project implements the algorithms for computing vines and vineyards for dyn
 
 [Updating Barcodes and Representatives for Zigzag Persistence](https://arxiv.org/pdf/2112.02352.pdf)
 
-by Tamal K. Dey and Tao Hou.
+by Tamal K. Dey and Tao Hou. The programming language used is C++.
 
 ## Group Information
 
@@ -35,14 +35,24 @@ into CMakeLists.txt.
 Commands for building are quite standard:
 
 ```
-cd [dir-to-fzz]
+cd [dir-to-zzup]
 mkdir build
 cd build
 cmake ..
 make
 ```
 
-The software is developed and tested under MacOS and Linux. 
+The software is developed and tested under MacOS. Compiling and running under other platforms (e.g., Linux) should not have any problems as only standard features of C++ are utilized.
+
+## Usage
+
+The software runs with following command:
+
+```
+./dpc_vine [OPTIONS] input_dpc_file
+```
+
+A sample input file specifying a dynamic point cloud (DPC) is provided as `sample_in.txt` with the source codes. A `input_dpc_file` starts with a line specifying the number (`N`) of points and each `N+1` lines that follow specify the positions of the points at a time `i`, with `i` always starting from `0`.
 
 ## Implementation Details
 
