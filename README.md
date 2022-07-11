@@ -75,7 +75,9 @@ where `[X]` is the maximum dimension and `[Y]`/`[Z]` are the starting/ending tim
 
 generates an output file `sample_in_d_3_t_1_5_vines.txt`.
 
-As in `[1]`, the vineyard specified in output file consists of 2D points (birth-death time for the persistence bars) sweeping through a third dimension (distance threshold for Rips) forming vines (lines). The first line of the output file specifies the maximum distance of points in the DPC. The reason for specifying such max distance is to provide a finite capping value for the third dimension for those vines starting from infinite distance.
+As in `[1]`, the vineyard specified in an output file consists of 2D points (birth-death time for the persistence bars) sweeping through a third dimension (distance threshold for Rips) forming vines (piece-wise linear lines connected by points). The first line of the output file specifies the maximum distance of points in the DPC. The reason for specifying such max distance is to provide a reference for manullay choosing a finite capping value for the third dimension for those vines starting from infinite distance.
+
+The remaining lines of an ouput file specifies the vines in the vineyard, each of which could start with `s`, `c`, or `e`. A line starting with `s` indicates the start of a vine; the following five numbers specify the id, birth time (x-value), death time (y-value), distance threshold (z-value), and dimension for the vine and its starting point. A line starting with `c` denotes the next point for the vine (identified by its id), connecting to the previous point for the vine specified by a line starting with `s` or `c`.
 
 ## Implementation Details
 
