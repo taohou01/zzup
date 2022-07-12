@@ -20,7 +20,7 @@ Given a dynamic point cloud as input, the software first builds a sequence of si
 - outward expansions
 - inward contractions
 
-It then performs updates on the zigzag barcodes for the operations and builds *vines and vineyards* `[2]` for the input data. More explanations on the implementation are provided in the Section [Implementation Details](https://github.com/taohou01/zzup#implementation-details)
+It then performs updates on the zigzag barcodes for the operations and builds *vines and vineyards* `[2]` for the input data. More explanations on the implementation are provided in the Section [Implementation Details](#implementation-details)
 
 ## Building
 
