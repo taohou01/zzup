@@ -54,7 +54,7 @@ The software runs with the following command:
 
 A sample input file specifying a dynamic point cloud (DPC) is provided as `sample_in.txt` with the source codes. An `input_dpc_file` starts with a line specifying the number `N` of points and each `N+1` lines that follow specify the positions of the points at a time `i`, with `i` always starting from `0`. The first of the `N+1` lines is `# t i` and each remaining line starts with an id for the point followed by its position (currently only in *2D*).
 
-The following options control the behavior of the program: 
+The following options control the behavior of the program (see `./dpc_vine -h`): 
 - `-d` specifies the maximum dimension for the Rips simplices considered (default to 2); 
 - `-s` specifies the starting time considered for the input DPC (default to 0); 
 - `-e` specifies the ending time considered for the input DPC (default to maximum time in input file);
@@ -97,7 +97,7 @@ The implementation can be roughly broken into two parts:
 
 We also notice the following:
 
-- Since we sweep the distance threshold in decreasing order, the starting filtration is an *up-down* zigzag filtration corresponding to the infinite distance, which adds all edges first and then delete them. The representatives for the up-down filtration are computed from an algorithm similar to the one described in Appendix A of `[3]` ([link](https://arxiv.org/pdf/2105.00518.pdf)). Notice that the addition and deletion of edges in the initial up-down filtration are in specific orders to ease the subsequent edge operations.
+- Since we sweep the distance threshold in decreasing order, the starting filtration is an *up-down* zigzag filtration corresponding to the infinite distance, which adds all edges first and then deletes them. The representatives for the up-down filtration are computed from an algorithm similar to the one described in Appendix A of `[3]` ([link](https://arxiv.org/pdf/2105.00518.pdf)). Notice that the addition and deletion of edges in the initial up-down filtration are in specific orders to ease the subsequent edge operations.
 
 - For efficient implementation, when manipulating chains during the update of representatives, the content of a chain (which is an increasing array of simplex id's) never changes once the chain is initially set. Hence, with [`std::share_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr), copying a chain is nothing but copying the chain's smart pointer (which is constant time). Whenever summing two chains, the resulting chain always points to a newly allocated memory location. Doing this can avoid unnecessary chain copies.
 
