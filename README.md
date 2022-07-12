@@ -30,7 +30,7 @@ The building utilized the [`cmake`](https://cmake.org/) software, and all buildi
 include_directories( "path/to/phat/include" ) 
 ```
 
-into CMakeLists.txt.
+into `CMakeLists.txt`.
 
 Commands for building are quite standard:
 
@@ -46,7 +46,7 @@ The software is developed and tested under MacOS. Compiling and running under ot
 
 ## Usage
 
-The software runs with following command:
+The software runs with the following command:
 
 ```
 ./dpc_vine [OPTIONS] input_dpc_file
@@ -73,11 +73,11 @@ where `[X]` is the maximum dimension and `[Y]`/`[Z]` are the starting/ending tim
 ./dpc_vine -d 3 -s 1 -e 5 ../sample_in.txt 
 ```
 
-generates an output file `sample_in_d_3_t_1_5_vines.txt`.
+generates an output file `sample_in_d_3_t_1_5_vines.txt` (also provided with source codes).
 
 As in `[1]`, the vineyard specified in an output file consists of 2D points (birth-death time for the persistence bars) sweeping through a third dimension (distance threshold for Rips) forming vines (piece-wise linear lines connected by points). The first line of the output file specifies the maximum distance of points in the DPC. The reason for specifying such max distance is to provide a reference for manually choosing a finite capping value for the third dimension for those vines starting from infinite distance.
 
-The remaining lines of an output file specifies the vines in the vineyard, each of which could start with `s`, `c`, or `e`. 
+The remaining lines of an output file specify the vines in the vineyard, each of which could start with `s`, `c`, or `e`. 
 
 - A line starting with `s` indicates the start of a vine; the following five numbers specify the (unique) id, birth time (x-value), death time (y-value), distance threshold (z-value), and dimension for the vine and its starting point. 
 - A line starting with `c` denotes the next point for the vine (identified by its id), connecting to the previous point (specified by a line starting with `s` or `c`); the following four numbers are the same as the first four numbers (excluding dimension) in a line starting with `s`. 
@@ -97,9 +97,9 @@ The implementation can be roughly broken into two parts:
 
 We also notice the following:
 
-- Since we sweep the distance threshold in decreasing order, the starting filtration is an *up-down* zigzag filtration which corresponds to the infinite distance. The representatives for the up-down filtration are computed from an algorithm similar to the one described in Appendix A of `[3]` ([link](https://arxiv.org/pdf/2105.00518.pdf)).
+- Since we sweep the distance threshold in decreasing order, the starting filtration is an *up-down* zigzag filtration corresponding to the infinite distance, which adds all edges first and then delete them. The representatives for the up-down filtration are computed from an algorithm similar to the one described in Appendix A of `[3]` ([link](https://arxiv.org/pdf/2105.00518.pdf)). Notice that the addition and deletion of edges in the initial up-down filtration are in specific orders to ease the subsequent edge operations.
 
-- For efficient implementation, when manipulating chains during the update of representatives, contents of a chain (which is an increasing array of simplex id's) never change once the chain is initially set. Hence, with [`std::share_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr), copying a chain is nothing but copying the chain's smart pointer (which is constant time). Whenever summing two chains, the resulting chain always points to a newly allocated memory location. Doing this can avoid a lot of unnecessary chain copies.
+- For efficient implementation, when manipulating chains during the update of representatives, the content of a chain (which is an increasing array of simplex id's) never changes once the chain is initially set. Hence, with [`std::share_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr), copying a chain is nothing but copying the chain's smart pointer (which is constant time). Whenever summing two chains, the resulting chain always points to a newly allocated memory location. Doing this can avoid unnecessary chain copies.
 
 - [`FastZigzag`](https://github.com/taohou01/fzz) is used for computing zigzag barcodes from scratch (for the purpose of timing comparison). Codes of [`FastZigzag`](https://github.com/taohou01/fzz) are wrapped into a class (`fzz.h/cpp`). [phat](https://github.com/blazs/phat) is used for computing the standard (non-zigzag) persistence in [`FastZigzag`](https://github.com/taohou01/fzz).
 
