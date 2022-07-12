@@ -111,3 +111,10 @@ We also notice the following:
 updating persistence in linear time. *The Twenty-Second Annual Symposium
 on Computational Geometry*.
 3. Tamal K. Dey and Tao Hou. Computing Optimal Persistent Cycles for Levelset Zigzag on Manifold-like Complexes.
+
+
+## License
+
+THIS SOFTWARE IS PROVIDED "AS-IS". THERE IS NO WARRANTY OF ANY KIND. NEITHER THE AUTHORS NOR PURDUE UNIVERSITY WILL BE LIABLE FOR ANY DAMAGES OF ANY KIND, EVEN IF ADVISED OF SUCH POSSIBILITY. 
+
+This software was developed (and is copyrighted by) the CGTDA research group at Purdue University. Please do not redistribute this software. This program is for academic research use only. This software uses the Boost and phat library, which are covered under their own licenses.
